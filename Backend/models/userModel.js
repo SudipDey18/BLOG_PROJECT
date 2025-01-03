@@ -1,39 +1,76 @@
-const db = require('../config/db');
+import db from '../config/db.js';
 
 const UsersTableCreate = async ()=>{
     const createTable = `CREATE TABLE IF NOT EXISTS Users (
-        Name VARCHAR(50),
+        Name VARCHAR(20),
         Email VARCHAR(25),
-        Password VARCHAR(15)
+        Password VARCHAR(150)
     )`
 
     await db.query(createTable);
 }
 
-const createUser = async (user) => {
+const createUser = async (user,pass) => {
     const Create_query = `INSERT INTO Users
     (Name, Email, Password)
     VALUES
     (?, ?, ?)`;
     await UsersTableCreate();
-    try{
-        db.query(Create_query, [user.Name, user.Email, user.Password])
-        console.log("A");
-        const allUsers = await getAllUser();
-        console.log("D");
-        console.log(allUsers);
-        return allUsers;
-    }catch(err){ return err};
+    const findUser = await isUserExists(user.Email);
+    if (findUser < 1) {
+        try{
+            await db.query(Create_query, [user.Name, user.Email, pass])
+            // const allUsers = await getAllUser();
+            return "User created successfully";
+        }catch(err){ 
+            return err;
+        }
+    }else{
+        return "User Already Exist";
+    }
 };
 
 const getAllUser = async() => {
-    console.log("B");
-    const allUserQuery = `SELECT * FROM Users`
-    console.log("C");
-    const [users] = await db.query(allUserQuery);
-    console.log(users);
-    return users;
+    try {
+        const allUserQuery = `SELECT * FROM Users`
+        const [users] = await db.query(allUserQuery);
+        return users; 
+    } catch (error) {
+        return error;
+    }
 };
 
+const findUser = async (data)=>{
+    const findUserQuery = `SELECT * FROM Users WHERE Email = ?`;
+    const isExist = await isUserExists(data);
+    if (isExist > 0) {
+        try {
+            const userData = (await db.query(findUserQuery,[data]))[0];
+            console.log(userData[0].Name);
+            return {
+                user: userData[0],
+            }
+        } catch (err) {
+            console.log(err);
+            return {
+                error: "Something went wrong"
+            }
+        }
+    }else{
+        return {error: "User not found"}
+    }
+}
 
-module.exports = { createUser, getAllUser };
+const isUserExists = async(user)=>{
+ const isExistsQuery = `SELECT COUNT(*) AS count FROM Users WHERE Email = ?`;
+ try {
+    const [reasult] = await db.query(isExistsQuery,[user]);
+    return reasult[0].count;
+    
+ } catch (error) {
+    return error;
+ }
+}
+
+
+export default { createUser, getAllUser, findUser};
