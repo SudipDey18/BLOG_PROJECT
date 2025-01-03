@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './Login.css'
-import {loginUser} from '../Api.jsx'
 
 const Login = () => {
     const [email,setEmail] = useState('');
@@ -8,16 +7,12 @@ const Login = () => {
 
     const loginSubmit = (e)=>{
         e.preventDefault();
-        const formData = {
-            "Email" : email,
-            "Password" : password,
-        }
-        loginUser(formData).then((data)=> console.log(data.data))
+        console.log(email,"   ",password);
     }
 
   return (
     <>
-     <div className="login-container" style={{backgroundColor: "#1e1e1e"}}>
+     <div className="login-container">
         <form className="login-form" onSubmit={loginSubmit}>
             <h2>Login</h2>
             <div className="input-group">

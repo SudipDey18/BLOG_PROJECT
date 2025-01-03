@@ -4,7 +4,9 @@ const UsersTableCreate = async ()=>{
     const createTable = `CREATE TABLE IF NOT EXISTS Users (
         Name VARCHAR(20),
         Email VARCHAR(25),
-        Password VARCHAR(150)
+        Password VARCHAR(150),
+        Role VARCHAR(6),
+        Gender VARCHAR(6)
     )`
 
     await db.query(createTable);
@@ -12,14 +14,14 @@ const UsersTableCreate = async ()=>{
 
 const createUser = async (user,pass) => {
     const Create_query = `INSERT INTO Users
-    (Name, Email, Password)
+    (Name, Email, Password, Role, Gender)
     VALUES
-    (?, ?, ?)`;
+    (?, ?, ?, ?, ?)`;
     await UsersTableCreate();
     const findUser = await isUserExists(user.Email);
     if (findUser < 1) {
         try{
-            await db.query(Create_query, [user.Name, user.Email, pass])
+            await db.query(Create_query, [user.Name, user.Email, pass, user.Role, user.Gender])
             // const allUsers = await getAllUser();
             return "User created successfully";
         }catch(err){ 
