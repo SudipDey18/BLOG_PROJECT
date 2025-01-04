@@ -2,6 +2,7 @@ import db from '../config/db.js';
 
 const UsersTableCreate = async ()=>{
     const createTable = `CREATE TABLE IF NOT EXISTS Users (
+        UserId int NOT NULL AUTO_INCREMENT,
         Name VARCHAR(20),
         Email VARCHAR(25),
         Password VARCHAR(150),

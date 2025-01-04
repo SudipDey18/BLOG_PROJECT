@@ -1,10 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import pool from './config/db.js';
-import SignUp from './controllers/userControler.js';
 import bodyParser from 'body-parser';
-import createUser from './models/userModel.js';
 import userRouter from './routes/userRouter.js'
+import blogRouter from './routes/blogRouter.js'
 
 
 import dotenv from "dotenv"
@@ -15,19 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use('/user',userRouter)
-
-app.post('/login',async(req,res)=>{
-    res.send("signUp page")
-});
-// app.post('/create',async(req,res)=>{
-//     await createUser(req.body).then((val)=>{
-//         return res.status(200).send(val);
-//     }).catch((err)=>{
-//         return res.status(500).send(err);
-//     })
-// });
-
+app.use('/user',userRouter);
+app.use('/blogs',blogRouter);
 
 
 
