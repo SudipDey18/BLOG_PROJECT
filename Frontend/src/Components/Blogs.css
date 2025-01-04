@@ -1,0 +1,120 @@
+/* styles.css */
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+.blog-item {
+    background-color: #1e1e1e;
+    width: 90%;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+.blog-title {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.blog-content {
+    height: 53px;
+    overflow: hidden;
+}
+
+.read-more {
+    background-color: #6200ea;
+    width: fit-content;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+
+.like-button {
+    width: 20px;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 30px;
+  }
+
+  
+  .like-button:hover {
+    color: #e3965e;
+    background: transparent;
+  }
+
+  .math-inline{
+    display: inline;
+    margin-left: 15px;
+  }
+  
+  /* .liked {
+    color: #ff4000; 
+  } */
+
+/* Modal style */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+  }
+  
+  .modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #e74c3c;
+    cursor: pointer;
+  }
+  
+  .modal-content .close:hover {
+    color: #c0392b;
+  }
+  
+  .hide{
+    display: none;
+    color: #d79090;
+  }
+
+  .view{
+    display: flex;
+  }

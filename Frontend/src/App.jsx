@@ -7,6 +7,7 @@ import {
 
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
+import Blogs from './Components/Blogs';
 
 function App() {
   const router = createBrowserRouter([
@@ -17,6 +18,10 @@ function App() {
     {
       path: '/create',
       element: <SignUp/>
+    },
+    {
+      path: '/blogs',
+      element: <Blogs/>
     }
   ])
 
