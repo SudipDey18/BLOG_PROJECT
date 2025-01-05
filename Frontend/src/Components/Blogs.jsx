@@ -43,8 +43,8 @@ const Blogs = () => {
 
   return (
     <>
-    <div className="container">
-        <h1>All Blogs</h1>
+    <div className="allBlogsContainer">
+        <h1 id='allBlogHeadding'>All Blogs</h1>
         <div className="blog-list" id="blogList">
             {blogs.map((element,index) => (
                 <div className="blog-item" key={index}>

@@ -1,0 +1,84 @@
+/* Dark Theme */
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+#blogForm {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.inputLabel {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#title, #content, #submitBtn {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    font-size: 16px;
+}
+
+#title, #content {
+    background-color: #2b2b2b;
+    color: #ffffff;
+}
+
+#content {
+    resize: none;
+}
+
+#submitBtn {
+    background-color: #6200ea;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#submitBtn:hover {
+    background-color: #3700b3;
+}
+
+#statusMessage {
+    text-align: center;
+    font-size: 14px;
+}
+
+.sucessBlogMessage{
+    color: rgb(28, 156, 3);
+}
+
+.errorBlogMessage{
+    color: rgb(218, 8, 8);
+}
+
+.hideBlogMessage{
+    display: none;
+}

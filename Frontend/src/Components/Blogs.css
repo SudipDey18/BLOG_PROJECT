@@ -7,12 +7,12 @@ body {
     padding: 20px;
 }
 
-.container {
+.allBlogsContainer {
     max-width: 800px;
     margin: auto;
 }
 
-h1 {
+#allBlogHeadding {
     text-align: center;
 }
 
@@ -31,7 +31,7 @@ h1 {
 }
 
 .blog-content {
-    height: 53px;
+    height: 40px;
     overflow: hidden;
 }
 

@@ -8,6 +8,7 @@ import {
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
 import Blogs from './Components/Blogs';
+import CreateBlog from './Components/CreateBlog';
 
 function App() {
   const router = createBrowserRouter([
@@ -22,6 +23,10 @@ function App() {
     {
       path: '/blogs',
       element: <Blogs/>
+    },
+    {
+      path: '/createBlog',
+      element: <CreateBlog/>
     }
   ])
 

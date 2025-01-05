@@ -16,7 +16,7 @@ const getBlogs = async (req,res) => {
     try {
         const data = await viewBlogs();
         if(data.Error) return res.send({Error: "Somethig Went Wrong"});
-        console.log(data.Blogs);
+        // console.log(data.Blogs);
         
         res.send({Blogs: data.Blogs});
     } catch (error) {
