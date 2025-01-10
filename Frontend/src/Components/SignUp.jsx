@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './SignUp.css'
 import {createUser} from '../Api.jsx'
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
 
@@ -104,7 +105,7 @@ const SignUp = () => {
             <button type="submit">Submit</button>
         </form>
         <div className="login-container">
-        <p>Already have account?<span id="login"> Login</span></p>
+        <p>Already have account?<Link id='linkTag' to='/'>Login</Link></p>
         </div>
     </div>
   )

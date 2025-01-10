@@ -20,7 +20,7 @@ const createUser = async (user,pass) => {
     (?, ?, ?, ?, ?)`;
     await UsersTableCreate();
     const findUser = await isUserExists(user.Email);
-    if (findUser < 1) {
+    if (findUser.Data < 1) {
         try{
             await db.query(Create_query, [user.Name, user.Email, pass, user.Role, user.Gender])
             // const allUsers = await getAllUser();
@@ -46,21 +46,23 @@ const getAllUser = async() => {
 const findUser = async (data)=>{
     const findUserQuery = `SELECT * FROM Users WHERE Email = ?`;
     const isExist = await isUserExists(data);
-    if (isExist > 0) {
+    
+    if (isExist.Error) return {Error: "Something went wrong"}
+    if (isExist.Data > 0) {
         try {
             const userData = (await db.query(findUserQuery,[data]))[0];
-            console.log(userData[0].Name);
+            // console.log(userData[0].Name);
             return {
-                user: userData[0],
+                User: userData[0],
             }
         } catch (err) {
             console.log(err);
             return {
-                error: "Something went wrong"
+                Error: "Something went wrong"
             }
         }
     }else{
-        return {error: "User not found"}
+        return {Error: "User not found"}
     }
 }
 
@@ -68,10 +70,10 @@ const isUserExists = async(user)=>{
  const isExistsQuery = `SELECT COUNT(*) AS count FROM Users WHERE Email = ?`;
  try {
     const [reasult] = await db.query(isExistsQuery,[user]);
-    return reasult[0].count;
+    return {Data: reasult[0].count};
     
  } catch (error) {
-    return error;
+    return {Error: error};
  }
 }
 

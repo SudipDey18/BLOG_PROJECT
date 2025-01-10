@@ -1,0 +1,59 @@
+/* Logout container styling */
+.logout-container {
+    text-align: center;
+    background-color: #1e1e1e; /* Slightly lighter dark for contrast */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 400px;
+}
+
+/* Title styling */
+.logout-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #f05454;
+}
+
+/* Message styling */
+.logout-message {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #dddddd;
+}
+
+/* Button container */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+/* Button styling */
+.btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn.confirm {
+    background-color: #f05454;
+    color: #ffffff;
+}
+
+.btn.confirm:hover {
+    background-color: #d63b3b;
+}
+
+.btn.cancel {
+    background-color: #7324e1;
+    color: #ffffff;
+}
+
+.btn.cancel:hover {
+    background-color: #6200ea;
+}

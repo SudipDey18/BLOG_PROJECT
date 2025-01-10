@@ -15,7 +15,7 @@ const verifyPass = async (pass,dbPass) => {
         const isCorrect = await bcrypt.compare(pass,dbPass)
         return {isCorrect}
     } catch (err) {
-        return {error : err}
+        return {Error : err}
     }
 }
 

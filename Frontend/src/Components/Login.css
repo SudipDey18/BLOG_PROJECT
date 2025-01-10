@@ -1,66 +1,109 @@
 .login-container {
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    width: 300px;
-    text-align: center;
-  }
-  
-  h2 {
-    margin-bottom: 20px;
-    color: #fff;
-  }
-  
-  .input-group {
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  .input-group label {
-    display: block;
-    font-size: 14px;
-    color: #aaa;
-    margin-bottom: 5px;
-  }
-  
-  .input-group input {
-    width: 91%;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #444;
-    border: 1px solid #555;
-    border-radius: 4px;
-    color: #fff;
-  }
-  
-  .input-group input:focus {
-    outline: none;
-    border-color: #3d8bfd;
-  }
-  
-  button {
-    width: 50%;
-    padding: 12px;
-    font-size: 16px;
-    background-color: #3d8bfd;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #3578d4;
-  }
+  padding: 30px;
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  width: 300px;
+  text-align: center;
+}
 
-  .create-account {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #aaa;
-    cursor: pointer;
-  }
-  
-  .create-account:hover {
-    color: #fff;
-  }
+h2 {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 91%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #444;
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #3d8bfd;
+}
+
+#statusMessage {
+  text-align: center;
+  font-size: 14px;
+}
+
+.sucessBlogMessage {
+  color: rgb(28, 156, 3);
+  display: block;
+}
+
+.errorBlogMessage {
+  color: rgb(218, 8, 8);
+  display: block;
+}
+
+.hideBlogMessage {
+  display: none;
+}
+
+button {
+  width: 50%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #3d8bfd;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #3578d4;
+}
+
+.create-account {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+
+#linkTag {
+  text-decoration: none;
+  color: aqua;
+}
+
+#linkTag:hover {
+  color: #40f134;
+}
+
+#statusMessage {
+  text-align: center;
+  font-size: 14px;
+}
+
+.sucessBlogMessage {
+  color: rgb(28, 156, 3);
+}
+
+.errorBlogMessage {
+  color: rgb(218, 8, 8);
+}
+
+.hideBlogMessage {
+  display: none;
+}

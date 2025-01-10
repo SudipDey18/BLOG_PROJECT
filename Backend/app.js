@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import pool from './config/db.js';
+import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import pool from './config/db.js';
 import userRouter from './routes/userRouter.js'
 import blogRouter from './routes/blogRouter.js'
 
@@ -13,6 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(cookieParser());
 
 app.use('/user',userRouter);
 app.use('/blogs',blogRouter);

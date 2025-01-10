@@ -1,9 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './CreateBlog.css'
 import { createBlog } from '../Api.jsx';
+import { useNavigate } from 'react-router-dom';
 
-const CreateBlog = () => {
+const CreateBlog = ({loginUser}) => {
+  useEffect( ()=> {
+    if (loginUser.Role != 'Writer') {
+      navigate('/blogs');
+    }
+  },[])
 
+  const navigate = useNavigate();
   const [messageState, setMessageState] = useState('hideBlogMessage');
   const [buttonStatus, setButtonStatus] = useState(false);
   const [message, setMessage] = useState('');
