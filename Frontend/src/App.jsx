@@ -4,7 +4,10 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
 import Blogs from './Components/Blogs';
@@ -14,6 +17,8 @@ import { useEffect, useState } from 'react';
 import { isLogin } from './Api.jsx';
 import { getCookie } from './Cookie/Cookie.js';
 import Logout from './Components/Logout.jsx';
+
+const queryClient = new QueryClient();
 
 function App() {
   
@@ -66,7 +71,7 @@ function App() {
       path: '/createUser',
       element: <>
         <NavBar loginUser = {loginUser} loginStatus = {loginStatus} />
-        <SignUp/>
+        <SignUp loginStatus = {loginStatus}/>
       </>
     },
     {
@@ -97,7 +102,9 @@ function App() {
   ])
 
   return (
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   )
 }
 

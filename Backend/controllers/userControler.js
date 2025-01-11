@@ -2,7 +2,7 @@ import userModel from "../models/userModel.js";
 import managePassword from "../config/managePassword.js";
 import authentication from "../config/authentication.js";
 
-const {createUser,findUser} = userModel;
+const {createUser,findUser,isUserExists} = userModel;
 const {encryptPass,verifyPass} = managePassword;
 const {generateToken, verifyToken} = authentication;
 
@@ -28,44 +28,49 @@ const isLogin = async (req,res) => {
 
 // Signup
 const SignUp = async (req,res) => {
-
-    const data = await encryptPass(req.body.Password);
+    let data = await isUserExists(req.body.Email);
+    
+    if ( data.Data >0 ) {
+        return res.status(409).json({Message : "The username or email you provided is already in use."});
+    }
+    data = await encryptPass(req.body.Password);
     if (data.error) {
-        return res.send("Something went Wrong");
+        return res.status(500).json({Message: "An unexpected error occurred on the server." });
     }
     const newPass = data.Password;
     const message = await createUser(req.body,newPass);
-
-    return res.send(message);
+    if (message.Error) {
+        return res.status(500).json({Message: "An unexpected error occurred on the server." });
+    }
+    return res.status(201).json(message);
 }
-
 
 // Login
 const Login = async(req,res) =>{
     let data = await findUser(req.body.Email);
     if (data.Error){
-        // console.log(data.Error);
-        return res.send({errorMessage: data.Error});
+        return res.status(data.code).json({Message: data.Error});
     }
     // console.log(data.User);
     const user = data.User;
-    data = (await verifyPass(req.body.Password,user.Password));
+    
+    data = await verifyPass(req.body.Password,user.Password);
     if (data.Error) {
-        return res.send({errorMessage: "Something went Wrong"});
+        return res.status(404).json({Message: "Something went Wrong. Please try again later"});
     }
     if (data.isCorrect) {
-        // console.log(data.isCorrect);
         // Generate Token
-        const Token = generateToken(user);
+        const tokenData = generateToken(user);
+        if (tokenData.Error) {
+            return res.status(404).json({Message: "Something went Wrong. Please try again later"});
+        }
         // console.log(Token);
-
-        return res.send({
-            sucessMessage: "Login Sucessfully",
-            jwtToken: Token
+        return res.status(200).json({
+            Message: "Login Sucessfully",
+            jwtToken: tokenData.Token
         });
     } else {
-        // console.log(data.isCorrect);
-        return res.send({errorMessage: "Invalid user or password"});
+        return res.status(403).json({Message: "Invalid Email or Password"});
     }
 }
 

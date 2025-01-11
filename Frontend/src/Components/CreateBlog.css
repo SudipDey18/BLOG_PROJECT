@@ -64,20 +64,3 @@ h1 {
 #submitBtn:hover {
     background-color: #3700b3;
 }
-
-#statusMessage {
-    text-align: center;
-    font-size: 14px;
-}
-
-.sucessBlogMessage{
-    color: rgb(28, 156, 3);
-}
-
-.errorBlogMessage{
-    color: rgb(218, 8, 8);
-}
-
-.hideBlogMessage{
-    display: none;
-}

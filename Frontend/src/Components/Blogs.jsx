@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import './Blogs.css'
 import { viewBlogs } from '../Api.jsx';
+import { useQuery } from '@tanstack/react-query'
 import { HiHeart } from "react-icons/hi";
+import Loading from './Loading.jsx';
+
 
 const Blogs = () => {
 
     const [blogs, setBlogs] = useState([]);
     const [display,setDisplay] = useState('hide');
     const [blog,setBlog] = useState({Title: '',Content: '', User:''});
-
-    useEffect( ()=>{
-        const fetchData = async () => {
-            const apiData = await viewBlogs();
-            console.log(typeof(apiData.data.Blogs));
-            setBlogs(apiData.data.Blogs)
+    const getBlogs = useQuery({
+        queryKey: ["blogs"],
+        queryFn: viewBlogs
+    });
+    
+    useEffect(() => {
+        if (getBlogs.data) {
+          console.log(getBlogs.data);
+          setBlogs(getBlogs.data?.data?.Blogs);
         }
-        fetchData();
-    },[])
+      }, [getBlogs.data]);
 
 
     const handelReadMore = (index)=> {
@@ -26,14 +31,18 @@ const Blogs = () => {
         setDisplay('view');
     }
 
+    if (getBlogs.isPending) {
+        return(<Loading loadingMessage="Blog Loading"/>)
+    }
+
   return (
     <>
-    <div className="allBlogsContainer">
+    <div className="allBlogsContainer" >
         <h1 id='allBlogHeadding'>All Blogs</h1>
         <hr />
         <div className="blog-list" id="blogList">
             {blogs.map((element,index) => (
-                <div className="blog-item" key={index}>
+                <div className="blog-item" key={index} style={{minWidth: '95%'}}>
                     <h2 className="blog-title">{element.Title}</h2>
                     <div className="blog-content" id="content">{element.Content}</div>
                     <button className="read-more" onClick={()=> handelReadMore(index)} >Read More</button>

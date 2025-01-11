@@ -14,7 +14,7 @@ const createBlogsTable = async ()=>{
 
 const createBlog = async (Blog) =>{
     const createBlogQuery = `INSERT INTO Blogs
-    (Title, Content) VALUES (? , ?)`;
+    (Title, Content, User) VALUES ( ?, ?, ?)`;
 
     try {
         await createBlogsTable();
@@ -23,7 +23,7 @@ const createBlog = async (Blog) =>{
     }
 
     try {
-        await db.query(createBlogQuery, [Blog.Title, Blog.Content])
+        await db.query(createBlogQuery, [Blog.Title, Blog.Content, Blog.User])
         return {Message: "Blog Created Successfully"};
     } catch (error) {
         return ({Error: error});

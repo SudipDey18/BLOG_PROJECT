@@ -18,19 +18,18 @@ const createUser = async (user,pass) => {
     (Name, Email, Password, Role, Gender)
     VALUES
     (?, ?, ?, ?, ?)`;
-    await UsersTableCreate();
-    const findUser = await isUserExists(user.Email);
-    if (findUser.Data < 1) {
+    try {
+        await UsersTableCreate();
+    } catch (error) {
+        return {Error: error};
+    }
         try{
             await db.query(Create_query, [user.Name, user.Email, pass, user.Role, user.Gender])
             // const allUsers = await getAllUser();
-            return "User created successfully";
-        }catch(err){ 
-            return err;
+            return {Message: "User created successfully"}
+        }catch(error){ 
+            return {Error: error};
         }
-    }else{
-        return "User Already Exist";
-    }
 };
 
 const getAllUser = async() => {
@@ -47,7 +46,10 @@ const findUser = async (data)=>{
     const findUserQuery = `SELECT * FROM Users WHERE Email = ?`;
     const isExist = await isUserExists(data);
     
-    if (isExist.Error) return {Error: "Something went wrong"}
+    if (isExist.Error) return {
+        code: 404,
+        Error: "Something went wrong. Please try again later"
+    }
     if (isExist.Data > 0) {
         try {
             const userData = (await db.query(findUserQuery,[data]))[0];
@@ -56,13 +58,16 @@ const findUser = async (data)=>{
                 User: userData[0],
             }
         } catch (err) {
-            console.log(err);
             return {
-                Error: "Something went wrong"
+                code: 404,
+                Error: "Something went wrong. Please try again later"
             }
         }
     }else{
-        return {Error: "User not found"}
+        return {
+            code: 403,
+            Error: "Invalid Email or Password"
+        }
     }
 }
 
@@ -78,4 +83,4 @@ const isUserExists = async(user)=>{
 }
 
 
-export default { createUser, getAllUser, findUser};
+export default { createUser, getAllUser, findUser, isUserExists};
