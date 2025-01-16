@@ -23,6 +23,7 @@ app.use('/blogs',blogRouter);
 
 pool.query("SELECT 1")
 .then( ()=> {
+    console.log('Database connected sucessfully');
     app.listen(process.env.Port, ()=>{
         console.log(`server is running at http://localhost:${process.env.Port}/`);
     }).on('error',(err)=>{
